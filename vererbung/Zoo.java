@@ -1,5 +1,7 @@
 package vererbung;
 
+
+import gui.GUI;
 import linear.List;
 
 public class Zoo {
@@ -7,6 +9,7 @@ public class Zoo {
 	private List<Tier> zootiere = new List<>();
 	
 	public static void main(String[] args) {
+		
 		// TODO Auto-generated method stub
 	}
 	

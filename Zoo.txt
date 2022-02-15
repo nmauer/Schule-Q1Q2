@@ -1,0 +1,237 @@
+package vererbung;
+
+
+import gui.GUI;
+import linear.List;
+
+public class Zoo {
+	
+	private List<Tier> zootiere = new List<>();
+	
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+	}
+	
+	public void alleBuersten() {
+		if(zootiere == null) return;	//Bei einer einzeiligen if-Abfrage können die geschweiften Klammern weggelassen werden. 
+		
+		zootiere.toFirst();
+		
+		while(zootiere.hasAccess()) {
+			Tier aktTier = zootiere.getContent();
+			
+			aktTier.buersten();
+			
+			zootiere.next();
+		}
+		
+	}
+	
+	public void alleFuettern(double pMenge) {
+		
+        if(zootiere == null) return;	
+		
+		zootiere.toFirst();
+		
+		while(zootiere.hasAccess()) {
+			Tier aktTier = zootiere.getContent();
+			
+			aktTier.fuettern(pMenge);
+			
+			zootiere.next();
+		}
+		
+	}
+	
+	public void raubkatzenBruellen() {
+		
+		if(zootiere == null) return;	
+		
+		zootiere.toFirst();
+		
+		while(zootiere.hasAccess()) {
+			Tier aktTier = zootiere.getContent();
+			
+			if(aktTier.isRaubKatze()) {
+				Raubkatze aktRaubi= (Raubkatze) aktTier;
+				aktRaubi.bruellen();
+			}
+			
+			zootiere.next();
+		}
+	}
+		
+	
+}
+
+
+
+
+package vererbung;
+
+public class Nilpferd extends Tier {
+
+	public Nilpferd(String name, boolean weiblich, double gewicht) {
+		super(name, weiblich, gewicht);
+	}
+
+	@Override
+	public void buersten() {
+		System.out.println("Schnaub!");
+	}
+
+}
+
+
+
+
+
+package vererbung;
+
+public class Tiger extends Raubkatze {
+	
+	private int anzahlStreifen;
+
+	public Tiger(String name, boolean weiblich, double gewicht, int anzahlStreifen) {
+		super(name, weiblich, gewicht);
+		this.anzahlStreifen = anzahlStreifen;	
+	}
+
+	@Override
+	public void bruellen() {
+		System.out.println("Ok lets Go");	
+	}
+	
+	public int getAnzahlStreifen() {
+		return anzahlStreifen;
+	}
+
+	public void setAnzahlStreifen(int anzahlStreifen) {
+		this.anzahlStreifen = anzahlStreifen;
+	}
+	
+}
+
+
+
+
+
+package vererbung;
+
+public class Loewe extends Raubkatze {
+
+	public Loewe(String name, boolean weiblich, double gewicht) {
+		super(name, weiblich, gewicht);
+	}
+
+	@Override
+	public void bruellen() {
+		System.out.println("SUIIIII");
+	}
+
+}
+
+
+
+
+
+package vererbung;
+
+public abstract class Raubkatze extends Tier {
+	
+	private int danger;
+	
+	public Raubkatze(String name, boolean weiblich, double gewicht) {
+		super(name, weiblich, gewicht);
+	}
+	
+	public abstract void bruellen();
+
+	@Override
+	public void buersten() {
+		System.out.println("Purrpurpur");
+	}
+	
+	public void fuettern(double pMenge) {
+			
+	}
+	
+	public int getDanger() {
+		return danger;
+	}
+	
+	public void setDanger(int danger) {
+		this.danger = danger;
+	}
+	
+	public boolean isRaubKatze(){
+		return true;
+	}
+	
+}
+
+
+
+
+
+
+package vererbung;
+
+public abstract class Tier {
+	
+	private String name;
+	private boolean weiblich;
+	private double gewicht;
+	
+	public Tier(String name, boolean weiblich, double gewicht) {
+		this.name = name;
+		this.weiblich = weiblich;
+		this.gewicht = gewicht;
+	}
+	
+	public abstract void buersten();
+	
+	public void fuettern(double pMenge) {
+		gewicht+=pMenge;
+	}
+	
+	public boolean isRaubKatze(){
+		if(this instanceof Raubkatze) {
+			return true;
+		}else 
+			return false;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public boolean isWeiblich() {
+		return weiblich;
+	}
+
+	public void setWeiblich(boolean weiblich) {
+		this.weiblich = weiblich;
+	}
+
+	public double getGewicht() {
+		return gewicht;
+	}
+
+	public void setGewicht(double gewicht) {
+		this.gewicht = gewicht;
+	}
+	
+}
+
+
+
+
+
+
+
