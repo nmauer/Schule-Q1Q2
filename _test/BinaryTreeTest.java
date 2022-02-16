@@ -175,10 +175,8 @@ public class BinaryTreeTest {
 	public ArrayList<Integer> gibBlaetterList(BinaryTree<Integer> tree){
 		ArrayList<Integer> leafs = new ArrayList<>();
 		
-		// termination conditions
 		if(tree == null || tree.isEmpty()) return leafs;
 		
-		// check if current tree is a leaf
 		if(tree.getRightTree().isEmpty() && tree.getLeftTree().isEmpty()){
 			leafs.add(tree.getContent());
 		}
